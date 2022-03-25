@@ -20,4 +20,6 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
+const firstName = document.getElementById('first');
+const lastName = document.getElementById('last');
 
