@@ -43,8 +43,8 @@ function formFirstName() {
     errorFirstName.innerHTML = "Les renseignements sont non valides, merci de bien vouloir saisir votre Prénom";
     errorFirstName.style.display = "block";
     return false;
-  } else if (firstName.value.length < 4) {
-    errorFirstName.innerHTML = "Merci de saisir au minimum 4 caractères";
+  } else if (firstName.value.length < 2) {
+    errorFirstName.innerHTML = "Merci de saisir au minimum 2 caractères";
     errorFirstName.style.display = "block";
     return false;
   } else if (!regexLetters.test(firstName.value)) {
@@ -65,7 +65,7 @@ function formLastName() {
     errorLastName.style.display = "block";
     return false;
   } else if (lastName.value.length < 2) {
-    errorLastName.innerHTML = "Merci de saisir au minimum 4 caractères";
+    errorLastName.innerHTML = "Merci de saisir au minimum 2 caractères";
     errorLastName.style.display = "block";
     return false;
   } else if (!regexLetters.test(lastName.value)) {
