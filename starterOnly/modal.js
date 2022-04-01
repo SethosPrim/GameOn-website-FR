@@ -99,6 +99,8 @@ function formEmail() {
 function validate(){
   console.log("Formulaire submitté");
   //@TODO Ajouter ici tous les vérifications
+  formFirstName();
+  ==true
 
   //@TODO Vider le formulaire
 
