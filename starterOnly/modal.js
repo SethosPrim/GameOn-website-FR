@@ -34,10 +34,11 @@ const firstName = document.getElementById("first");
 const lastName = document.getElementById("last");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
+const gamesPlayed = document.getElementById("quantity")
 
 //@TODO Créer des méthode de vérification pour chaque type de champ
 function formFirstName() {
-  const errorFirstName = document.getElementById("erreur_firstname");
+  const errorFirstName = document.getElementById("erreur-firstname");
   const regexLetters = new RegExp(/^[A-Za-z-]+$/);
   if (!firstName.value) {
     errorFirstName.innerHTML = "Les renseignements sont non valides, merci de bien vouloir saisir votre Prénom";
@@ -50,7 +51,7 @@ function formFirstName() {
   } else if (!regexLetters.test(firstName.value)) {
     errorFirstName.innerHTML = "Merci d'utiliser uniquement des caractéres alphanumériques et saisir (-) pour les prénoms composés";
     errorFirstName.style.display = "block";
-    return false
+    return false;
   } else {
     errorFirstName.style.display = "none";
     return true;
@@ -58,7 +59,7 @@ function formFirstName() {
 }
 
 function formLastName() {
-  const errorLastName = document.getElementById("erreur_lastname");
+  const errorLastName = document.getElementById("erreur-lastname");
   const regexLetters = new RegExp(/^[A-Za-z-]+$/);
   if (!lastName.value) {
     errorLastName.innerHTML = "Les renseignements sont non valides, merci de bien vouloir saisir votre Nom";
@@ -71,15 +72,15 @@ function formLastName() {
   } else if (!regexLetters.test(lastName.value)) {
     errorLastName.innerHTML = "Merci d'utiliser uniquement des caractéres alphanumériques et saisir (-) pour les prénoms composés";
     errorLastName.style.display = "block";
-    return false
-  }else {
+    return false;
+  } else {
     errorLastName.style.display = "none";
     return true;
   }
 }
 
 function formEmail() {
-  const errorEmail = document.getElementById("erreur_email");
+  const errorEmail = document.getElementById("erreur-email");
   const regexEmail = new RegExp(/\S+@\S+\.\S+/);
   if (!email.value) {
     errorEmail.innerHTML = "Les renseignements sont non valides, merci de bien vouloir saisir votre email";
@@ -95,19 +96,68 @@ function formEmail() {
   }
 }
 
+function formBirthDate() {
+  const errorBirthdate = document.getElementById("erreur-birthdate");
+  if (!birthdate.value) {
+    errorBirthdate.innerHTML = "Merci de bien vouloir renseigner votre date d'anniversaire";
+    errorBirthdate.style.display = "block";
+    return false;
+  } //else if (birthdate.type !== "date") {
+    //errorBirthdate.innerHTML = "Merci de bien vouloir renseigner une date";
+    //errorBirthdate.style.display = "block";
+  //} 
+  else {
+    errorBirthdate.style.display = "none";
+    return true;
+  }
+}
+
+function formGamesPlayed() {
+  const errorGamesPlayed = document.getElementById("erreur-gamesplayed");
+  const regexGamesPlayed = new RegExp("^[0-9][0-9]?$|^99$");
+  if (!gamesPlayed.value) {
+    errorGamesPlayed.innerHTML = "Merci de bien vouloir renseigner votre nombre de participation";
+    errorGamesPlayed.style.display = "block";
+    return false;
+  } else if (!regexGamesPlayed.test(gamesPlayed.value)) {
+    errorGamesPlayed.innerHTML = "Les renseignements sont non valides, merci de bien vouloir renseigner un nombre compris entre 0 et 99";
+    errorGamesPlayed.style.display = "block";
+    return false;
+  } else {
+    errorGamesPlayed.style.display = "none";
+    return true;
+  }
+}
+
 // Main validate methode
 function validate(){
   console.log("Formulaire submitté");
-  //@TODO Ajouter ici tous les vérifications
-  formFirstName();
-  ==true
 
-  //@TODO Vider le formulaire
+  //@TODO Ajouter ici toutes les vérifications
+  var allFunctionsAreOk = true;
 
-  //@TODO Fermer ce formulaire si tous est valide
-  closeModal();
+  if (!formFirstName()){
+    allFunctionsAreOk = false;
+  }
+  if (!formLastName()){
+    allFunctionsAreOk = false;
+  }
+  if (!formEmail()){
+    allFunctionsAreOk = false;
+  }
+  if (!formBirthDate()){
+    allFunctionsAreOk = false;
+  }
+  if (!formGamesPlayed()){
+    allFunctionsAreOk = false;
+  }
+  if (allFunctionsAreOk){
+    //@TODO Vider le formulaire
 
-  //@TODO Afficher le modal de confirmation
-
-  return false;
+    //@TODO Fermer ce formulaire si tous est valide
+    closeModal();
+    //@TODO Afficher le modal de confirmation
+  } else {
+    return false;
+  }
 }

@@ -526,3 +526,11 @@ footer {
     opacity: 1;
   }
 }
+
+/* Mon CSS */
+
+.commentaires{
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(255, 0, 0, 0.76);
+}
