@@ -13,6 +13,8 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalCloseBtn = document.querySelectorAll(".close");
 
+const modalbg2 = document.getElementById("modal2");
+
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -24,8 +26,16 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
+function launchModal2() {
+  modalbg2.style.display = "block";
+}
+
 // close modal form
 function closeModal(){
+  modalbg.style.display = "none";
+}
+
+function closeModal2(){
   modalbg.style.display = "none";
 }
 
@@ -35,8 +45,8 @@ const lastName = document.getElementById("last");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const gamesPlayed = document.getElementById("quantity")
-const villeLocation = document.getElementById("location")
-const checkBox = document.getElementById("checkbox")
+const villeLocation = document.getElementsByName("location")
+const checkBox = document.getElementById("checkbox1")
 
 //@TODO Créer des méthode de vérification pour chaque type de champ
 function functFirstName() {
@@ -104,11 +114,7 @@ function functBirthDate() {
     errorBirthdate.innerHTML = "Merci de bien vouloir renseigner votre date d'anniversaire";
     errorBirthdate.style.display = "block";
     return false;
-  } //else if (birthdate.type !== "date") {
-    //errorBirthdate.innerHTML = "Merci de bien vouloir renseigner une date";
-    //errorBirthdate.style.display = "block";
-  //} 
-  else {
+  } else {
     errorBirthdate.style.display = "none";
     return true;
   }
@@ -134,7 +140,7 @@ function functGamesPlayed() {
 function functVilleLocation() {
   const errorVilleLocation = document.getElementById("erreur-location");
   const result = Array.from(villeLocation).filter((ville) => ville.checked === true);
-  if (result.length > 0) {
+  if (result.length < 0) {
     errorVilleLocation.innerHTML = "Merci de bien vouloir renseigner une ville";
     errorVilleLocation.style.display = "block";
     return false;
@@ -157,18 +163,11 @@ function functCheckBox() {
 }
 
 function confirmationModal() {
-  const confirmationModalValidation = document.getElementById("validation-confirmationmodal");
-  if (!closeModal()) {
-    return false;
-  } else {
-    confirmationModalValidation.innerHTML = "Merci de votre intérêt, votre inscription a bien été prise en compte";
-    confirmationModalValidation.style.display = "block";
-  }
+  launchModal2();
 }
 
 // Main validate methode
-function validate(){
-  console.log("Formulaire submitté");
+function validate() {
 
   //@TODO Ajouter ici toutes les vérifications
   var allFunctionsAreOk = true;
@@ -188,20 +187,18 @@ function validate(){
   if (!functGamesPlayed()){
     allFunctionsAreOk = false;
   }
-  //if (!formVilleLocation()){
-    //allFunctionsAreOk = false;
-  //}
-  //if (!functCheckBox()){
-    //allFunctionsAreOk = false;
-  //}
+  if (!functVilleLocation()){
+    allFunctionsAreOk = false;
+  }
+  if (!functCheckBox()){
+    allFunctionsAreOk = false;
+  }
   if (allFunctionsAreOk){
     //@TODO Vider le formulaire
 
-    //@TODO Fermer ce formulaire si tous est valide
+    //@TODO Fermer ce formulaire si tout est valide
     closeModal();
     //@TODO Afficher le modal de confirmation
     confirmationModal();
-  } else {
-    return false;
-  }
+  } return false;
 }
