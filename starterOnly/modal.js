@@ -140,7 +140,7 @@ function functGamesPlayed() {
 function functVilleLocation() {
   const errorVilleLocation = document.getElementById("erreur-location");
   const result = Array.from(villeLocation).filter((ville) => ville.checked === true);
-  if (result.length < 0) {
+  if (result.length <= 0) {
     errorVilleLocation.innerHTML = "Merci de bien vouloir renseigner une ville";
     errorVilleLocation.style.display = "block";
     return false;
