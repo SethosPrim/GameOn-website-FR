@@ -12,6 +12,8 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalCloseBtn = document.querySelectorAll(".close");
+const modalCloseBtn2 = document.getElementById("close2");
+const form = document.getElementById("reserve");
 
 const modalbg2 = document.getElementById("modal2");
 
@@ -20,6 +22,7 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // close modal event
 modalCloseBtn.forEach(item => item.addEventListener("click", closeModal));
+modalCloseBtn2.addEventListener("click", closeModal2);
 
 // launch modal form
 function launchModal() {
@@ -36,7 +39,7 @@ function closeModal(){
 }
 
 function closeModal2(){
-  modalbg.style.display = "none";
+  modalbg2.style.display = "none";
 }
 
 //Récupération des elements du formulaire
@@ -163,6 +166,8 @@ function functCheckBox() {
 }
 
 function confirmationModal() {
+  //@TODO Vider le formulaire
+  form.reset();
   launchModal2();
 }
 
@@ -194,8 +199,6 @@ function validate() {
     allFunctionsAreOk = false;
   }
   if (allFunctionsAreOk){
-    //@TODO Vider le formulaire
-
     //@TODO Fermer ce formulaire si tout est valide
     closeModal();
     //@TODO Afficher le modal de confirmation
